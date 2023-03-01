@@ -6,64 +6,67 @@
     		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     		<link rel="stylesheet" href="./assets/css/style.css">
+            <script src="http://cdn.tailwindcss.com"></script>
 	</head>
 	<body>
-		<header> Weather Dashboard </header>
-		<main>
-            <aside id="search-bar">
-                <h2>Search for a City:</h2>
-                <form>
-                    <input type="text" placeholder="San Diego" name="city input">
-                    <input type="submit" value="Search">
+		<header class="width-full bg-blue-600 py-8 my-auto"> <span class="ml-[52%] text-3xl font-bold">Weather Dashboard</span> </header>
+		<main class="container flex flex-row mt-2">
+            <aside id="search-bar" class="basis-1/4">
+                <h2 class="text-2xl font-bold">Search for a City:</h2>
+                <form class="flex flex-col border-b-2 border-black pb-2 pt-2">
+                    <input type="text" placeholder="San Diego" name="city input" class="mb-2">
+                    <input type="submit" value="Search" class="bg-blue-400 text-white rounded hover:bg-blue-500">
                 </form>
                 <!-- links to city data are listed here -->
-                <div class="city-list">
-                    <input type="button" value="city_name_1" id="city_name_1">
-                    <input type="button" value="city_name_2" id="city_name_2">
-                    <input type="button" value="city_name_3" id="city_name_3">
-                    <input type="button" value="city_name_4" id="city_name_4">
+                <div class="city-list flex flex-col">
+                    <input type="button" value="city_name_1" id="city_name_1" class="bg-gray-400 rounded hover:bg-gray-300 mt-2 mb-1">
+                    <input type="button" value="city_name_2" id="city_name_2" class="bg-gray-400 rounded hover:bg-gray-300 mb-1">
+                    <input type="button" value="city_name_3" id="city_name_3" class="bg-gray-400 rounded hover:bg-gray-300 mb-1">
+                    <input type="button" value="city_name_4" id="city_name_4" class="bg-gray-400 rounded hover:bg-gray-300">
                 </div>
             </aside>
 
-			<div id="weather-stat-block">
-                <div id="city-current-forcast">
-                    <h2>City (mm/dd/yyyy)</h2>
+			<div id="weather-stat-block" class="basis-3/4 flex flex-col flex-nowrap px-3">
+                <div id="city-current-forcast" class="border-2 border-black p-3">
+                    <h2 class="text-2xl font-bold">City (mm/dd/yyyy)</h2>
                     <p class="temp">Temp:</p>
                     <p class="wind">Wind:</p>
                     <p class="humidity">Humidity:</p>
                 </div>
 
                 <div id="city-5day-forcast">
-                    <h3>5-Day Forcast</h3>
-                    <div class="1-day-after">
-                        <h4>mm/dd/yyyy</h4>
-                        <p class="temp">Temp:</p>
-                        <p class="wind">Wind:</p>
-                        <p class="humidity">Humidity:</p>
-                    </div>
-                    <div class="2-days-after">
-                        <h4>mm/dd/yyyy</h4>
-                        <p class="temp">Temp:</p>
-                        <p class="wind">Wind:</p>
-                        <p class="humidity">Humidity:</p>
-                    </div>
-                    <div class="3-days-after">
-                        <h4>mm/dd/yyyy</h4>
-                        <p class="temp">Temp:</p>
-                        <p class="wind">Wind:</p>
-                        <p class="humidity">Humidity:</p>
-                    </div>
-                    <div class="4-days-after">
-                        <h4>mm/dd/yyyy</h4>
-                        <p class="temp">Temp:</p>
-                        <p class="wind">Wind:</p>
-                        <p class="humidity">Humidity:</p>
-                    </div>
-                    <div class="5-days-after">
-                        <h4>mm/dd/yyyy</h4>
-                        <p class="temp">Temp:</p>
-                        <p class="wind">Wind:</p>
-                        <p class="humidity">Humidity:</p>
+                    <h3 class="text-1xl font-bold">5-Day Forcast:</h3>
+                    <div class="flex flex-row flex-nowrap">
+                        <div class="1-day-after bg-gray-300 mr-2">
+                            <h4>mm/dd/yyyy</h4>
+                            <p class="temp">Temp:</p>
+                            <p class="wind">Wind:</p>
+                            <p class="humidity">Humidity:</p>
+                        </div>
+                        <div class="2-days-after bg-gray-300 mr-2">
+                            <h4>mm/dd/yyyy</h4>
+                            <p class="temp">Temp:</p>
+                            <p class="wind">Wind:</p>
+                            <p class="humidity">Humidity:</p>
+                        </div>
+                        <div class="3-days-after bg-gray-300 mr-2">
+                            <h4>mm/dd/yyyy</h4>
+                            <p class="temp">Temp:</p>
+                            <p class="wind">Wind:</p>
+                            <p class="humidity">Humidity:</p>
+                        </div>
+                        <div class="4-days-after bg-gray-300 mr-2">
+                            <h4>mm/dd/yyyy</h4>
+                            <p class="temp">Temp:</p>
+                            <p class="wind">Wind:</p>
+                            <p class="humidity">Humidity:</p>
+                        </div>
+                        <div class="5-days-after bg-gray-300 mr-2">
+                            <h4>mm/dd/yyyy</h4>
+                            <p class="temp">Temp:</p>
+                            <p class="wind">Wind:</p>
+                            <p class="humidity">Humidity:</p>
+                        </div>
                     </div>
                 </div>
             </div>
