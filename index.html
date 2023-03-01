@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<title> Website's Tab Title </title>
+		<meta charset="UTF-8" />
+    		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    		<link rel="stylesheet" href="./assets/css/style.css">
+	</head>
+	<body>
+		<header> Weather Dashboard </header>
+		<main>
+            <aside id="search-bar">
+                <h2>Search for a City:</h2>
+                <form>
+                    <input type="text" placeholder="San Diego" name="city input">
+                    <input type="submit" value="Search">
+                </form>
+                <!-- links to city data are listed here -->
+                <div class="city-list">
+                    <input type="button" value="city_name_1" id="city_name_1">
+                    <input type="button" value="city_name_2" id="city_name_2">
+                    <input type="button" value="city_name_3" id="city_name_3">
+                    <input type="button" value="city_name_4" id="city_name_4">
+                </div>
+            </aside>
+
+			<div id="weather-stat-block">
+                <div id="city-current-forcast">
+                    <h2>City (mm/dd/yyyy)</h2>
+                    <p class="temp">Temp:</p>
+                    <p class="wind">Wind:</p>
+                    <p class="humidity">Humidity:</p>
+                </div>
+
+                <div id="city-5day-forcast">
+                    <h3>5-Day Forcast</h3>
+                    <div class="1-day-after">
+                        <h4>mm/dd/yyyy</h4>
+                        <p class="temp">Temp:</p>
+                        <p class="wind">Wind:</p>
+                        <p class="humidity">Humidity:</p>
+                    </div>
+                    <div class="2-days-after">
+                        <h4>mm/dd/yyyy</h4>
+                        <p class="temp">Temp:</p>
+                        <p class="wind">Wind:</p>
+                        <p class="humidity">Humidity:</p>
+                    </div>
+                    <div class="3-days-after">
+                        <h4>mm/dd/yyyy</h4>
+                        <p class="temp">Temp:</p>
+                        <p class="wind">Wind:</p>
+                        <p class="humidity">Humidity:</p>
+                    </div>
+                    <div class="4-days-after">
+                        <h4>mm/dd/yyyy</h4>
+                        <p class="temp">Temp:</p>
+                        <p class="wind">Wind:</p>
+                        <p class="humidity">Humidity:</p>
+                    </div>
+                    <div class="5-days-after">
+                        <h4>mm/dd/yyyy</h4>
+                        <p class="temp">Temp:</p>
+                        <p class="wind">Wind:</p>
+                        <p class="humidity">Humidity:</p>
+                    </div>
+                </div>
+            </div>
+		</main>
+        <script src="./assets/js/script.js"></script>
+	</body>
+</html>
