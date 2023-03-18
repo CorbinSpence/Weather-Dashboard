@@ -51,22 +51,23 @@ async function getWeatherReport(baseURL){
     })
     var response = await raw.json()
     let city = response.city.name
-    if(!searchedCities.includes(city)){
-        let list = response.list
-        let currentStats = {"temp":convertKelvinToFahrinheit(list[0].main.temp), "wind":list[0].wind.speed, "humidity":list[0].main.humidity}
-        let fiveDayStats = []
-        let dayIndex = 1
-        for(l in list){
-            //console.log(list[l].dt)
-            //console.log(dayjs(list[l].dt*1000))
-            if(dayjs(list[l].dt*1000).isSame(dayjs(list[0].dt*1000).add(dayIndex, "day"))){
-                dayIndex++
-                fiveDayStats.push({"temp":convertKelvinToFahrinheit(list[l].main.temp), "wind":list[l].wind.speed, "humidity":list[l].main.humidity})
-                console.log(dayjs(list[l].dt*1000).format('D-H'))
-            }
+    
+    let list = response.list
+    let currentStats = {"temp":convertKelvinToFahrinheit(list[0].main.temp), "wind":list[0].wind.speed, "humidity":list[0].main.humidity}
+    let fiveDayStats = []
+    let dayIndex = 1
+    for(l in list){
+        //console.log(list[l].dt)
+        //console.log(dayjs(list[l].dt*1000))
+        if(dayjs(list[l].dt*1000).isSame(dayjs(list[0].dt*1000).add(dayIndex, "day"))){
+            dayIndex++
+            fiveDayStats.push({"temp":convertKelvinToFahrinheit(list[l].main.temp), "wind":list[l].wind.speed, "humidity":list[l].main.humidity})
+            console.log(dayjs(list[l].dt*1000).format('D-H'))
         }
-        let data = {"city":city, "currentStats":currentStats, "fiveDayStats":fiveDayStats}
-        console.log(previousResults)
+    }
+    let data = {"city":city, "currentStats":currentStats, "fiveDayStats":fiveDayStats}
+    console.log(previousResults)
+    if(!searchedCities.includes(city)){
         previousResults.push(data)
         searchedCities.push(city)
         localStorage.setItem(previousResultsKey, JSON.stringify(previousResults))
@@ -78,19 +79,36 @@ async function getWeatherReport(baseURL){
     for(i in searchedCities){
         cityButtons.append('<input type="button" value="'+searchedCities[i]+'" id="'+searchedCities[i]+'" class="bg-gray-400 rounded hover:bg-gray-300 mb-1 city-button">')
     }
+    let currentForcast = $('#city-current-forcast')
+    console.log(currentForcast.children('.temp'))
+    currentForcast.children('h2').text(city+' '+dayjs(list[0].dt*1000).format('(MM-DD-YYYY)'))
+    currentForcast.children('.temp').text('Temp: '+currentStats.temp)
+    currentForcast.children('.wind').text('Wind: '+currentStats.wind)
+    currentForcast.children('.humidity').text('Humidity: '+currentStats.humidity)
+    for(i in fiveDayStats){
+        
+        let index = 1+parseInt(i)
+        let temp = $('#'+index+'-days-after')
+        console.log('#'+index+'-days-after')
+        console.log(typeof i)
+        temp.children('h4').text(dayjs(list[0].dt*1000).add(index, "day").format('MM/DD/YYYY'))
+        temp.children('.temp').text('Temp: '+fiveDayStats[i].temp)
+        temp.children('.wind').text('Wind: '+fiveDayStats[i].wind)
+        temp.children('.humidity').text('Humidity: '+fiveDayStats[i].humidity)
+    }
 }
 
 
 
 const searchCity = function (event){
-    event.preventDefault
+    event.preventDefault()
     searchedCity = $('#search-input').val()
     console.log(searchedCity)
     getWeatherReport(weatherURL)
 }
 
 const showPreviousCity = function (event){
-    event.preventDefault
+    event.preventDefault()
     let city = $(event.target).val()
     console.log("setting up "+city)
 }
