@@ -18,8 +18,8 @@ if(searchedCities === null){
 }
 
 var searchedCity = "boston"
-var weatherURL = 'http://api.openweathermap.org/data/2.5/forecast'
-var geoCoderURL = 'http://api.openweathermap.org/geo/1.0/direct?q='+searchedCity+'&limit=1&appid=62818af10b1b70f3c94825ea2a5873f2'
+const weatherURL = 'http://api.openweathermap.org/data/2.5/forecast'
+const geoCoderURL = 'http://api.openweathermap.org/geo/1.0/direct'
 var lat = 0
 var lon = 0
 
@@ -28,8 +28,10 @@ function convertKelvinToFahrinheit(tempK){
     return far
 }
 
-async function getCordinates(){
-    var raw = await fetch(geoCoderURL)
+async function getCordinates(baseURL){
+    let geoSearchURL = baseURL+'?q='+searchedCity+'&limit=1&appid=62818af10b1b70f3c94825ea2a5873f2'
+    console.log(geoSearchURL)
+    var raw = await fetch(geoSearchURL)
     var response = await raw.json()
     console.log(response)
     lat = await response[0].lat
@@ -38,7 +40,7 @@ async function getCordinates(){
     console.log(lon)
 }
 async function getWeatherReport(baseURL){
-    await getCordinates()
+    await getCordinates(geoCoderURL)
     var fullURL = baseURL+'?lat='+lat+'&lon='+lon+'&appid=62818af10b1b70f3c94825ea2a5873f2'
     console.log(fullURL)
     console.log(typeof fullURL)
@@ -74,14 +76,24 @@ async function getWeatherReport(baseURL){
     let cityButtons = $('#city-list')
     cityButtons.children().remove()
     for(i in searchedCities){
-        cityButtons.append('<input type="button" value="'+searchedCities[i]+'" id="'+searchedCities[i]+'" class="bg-gray-400 rounded hover:bg-gray-300 mb-1">')
+        cityButtons.append('<input type="button" value="'+searchedCities[i]+'" id="'+searchedCities[i]+'" class="bg-gray-400 rounded hover:bg-gray-300 mb-1 city-button">')
     }
 }
 
 
-getCordinates(geoCoderURL)
-console.log(lat)
-console.log(lon)
 
-getWeatherReport(weatherURL)
+const searchCity = function (event){
+    event.preventDefault
+    searchedCity = $('#search-input').val()
+    console.log(searchedCity)
+    getWeatherReport(weatherURL)
+}
 
+const showPreviousCity = function (event){
+    event.preventDefault
+    let city = $(event.target).val()
+    console.log("setting up "+city)
+}
+const submitButton = $('#submit-search')
+submitButton.on('click', searchCity)
+$('#city-list').on('click', '.city-button', showPreviousCity)
